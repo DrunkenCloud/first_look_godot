@@ -1,0 +1,75 @@
+[gd_scene load_steps=12 format=3 uid="uid://cj18px30bt3eb"]
+
+[ext_resource type="Script" path="res://eagle.gd" id="1_bl440"]
+[ext_resource type="Texture2D" uid="uid://df15rdqstt1r8" path="res://Sunny Land Collection Files/Sunny Land Collection Files/Assets/Packs/Sunnyland/spritesheets/eagle-attack.png" id="1_y80s4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_csf6g"]
+atlas = ExtResource("1_y80s4")
+region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4t77c"]
+atlas = ExtResource("1_y80s4")
+region = Rect2(40, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqs0t"]
+atlas = ExtResource("1_y80s4")
+region = Rect2(80, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b5jh2"]
+atlas = ExtResource("1_y80s4")
+region = Rect2(120, 0, 40, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dkgq3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_csf6g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4t77c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wqs0t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b5jh2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x7j8f"]
+radius = 17.0
+height = 46.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_svtfc"]
+bg_color = Color(0.891658, 0.454816, 0.372759, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sxuhu"]
+bg_color = Color(0.253446, 0.693169, 0.502795, 1)
+
+[sub_resource type="Theme" id="Theme_rb0ti"]
+ProgressBar/styles/background = SubResource("StyleBoxFlat_svtfc")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_sxuhu")
+
+[node name="eagle" type="CharacterBody2D"]
+script = ExtResource("1_bl440")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(4.76837e-07, -1)
+scale = Vector2(0.9875, 0.8)
+sprite_frames = SubResource("SpriteFrames_dkgq3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_x7j8f")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="HPBar" type="ProgressBar" parent="."]
+offset_left = -55.0
+offset_top = -64.0
+offset_right = 57.0
+offset_bottom = -37.0
+theme = SubResource("Theme_rb0ti")
+show_percentage = false

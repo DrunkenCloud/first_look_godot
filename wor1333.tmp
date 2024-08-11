@@ -1,0 +1,87 @@
+[gd_scene load_steps=10 format=3 uid="uid://ber2vum24dbrh"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_lm0gx"]
+[ext_resource type="PackedScene" uid="uid://bfahm5527dxs1" path="res://Player/Player.tscn" id="2_80yoq"]
+[ext_resource type="PackedScene" uid="uid://cj18px30bt3eb" path="res://eagle.tscn" id="3_ojc2d"]
+[ext_resource type="Texture2D" uid="uid://bdkx2lndek1oy" path="res://Sunny Land Collection Files/Sunny Land Collection Files/Assets/Packs/Sunnyland/environment/Background/back.png" id="3_rbfxo"]
+[ext_resource type="Texture2D" uid="uid://bagxspi6tra1v" path="res://Sunny Land Collection Files/Sunny Land Collection Files/Assets/Packs/Sunnyland/environment/Props/platform-long.png" id="4_dinum"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_q22so"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xobhk"]
+size = Vector2(1299.25, 93)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dtt63"]
+size = Vector2(1299.5, 104)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pxrct"]
+size = Vector2(73.5, 845.297)
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_lm0gx")
+eagle = ExtResource("3_ojc2d")
+
+[node name="Back" type="Sprite2D" parent="."]
+position = Vector2(599, 344)
+scale = Vector2(3.9974, 3.19583)
+texture = ExtResource("3_rbfxo")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 444.0
+offset_top = 167.0
+offset_right = 693.0
+offset_bottom = 243.0
+text = "Quit"
+
+[node name="Player" parent="." instance=ExtResource("2_80yoq")]
+position = Vector2(565, 367)
+
+[node name="Hazard" type="StaticBody2D" parent="."]
+position = Vector2(-1, 0)
+physics_material_override = SubResource("PhysicsMaterial_q22so")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hazard"]
+position = Vector2(577.375, 690)
+shape = SubResource("RectangleShape2D_xobhk")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Hazard"]
+position = Vector2(576.25, -25)
+shape = SubResource("RectangleShape2D_dtt63")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hazard"]
+position = Vector2(-18, 318.648)
+shape = SubResource("RectangleShape2D_pxrct")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Hazard"]
+position = Vector2(1175, 318.766)
+shape = SubResource("RectangleShape2D_pxrct")
+
+[node name="eagle" parent="." instance=ExtResource("3_ojc2d")]
+position = Vector2(820, 482)
+
+[node name="Platform-long" type="Sprite2D" parent="."]
+position = Vector2(-128, 480.75)
+rotation = 4.71239
+scale = Vector2(33.1667, -17.1738)
+texture = ExtResource("4_dinum")
+
+[node name="Platform-long2" type="Sprite2D" parent="."]
+position = Vector2(1313, 309.5)
+rotation = 4.71239
+scale = Vector2(27.1199, 21.3234)
+texture = ExtResource("4_dinum")
+
+[node name="Platform-long3" type="Sprite2D" parent="."]
+position = Vector2(578, -157)
+rotation = 3.14159
+scale = Vector2(52.7136, 21.3234)
+texture = ExtResource("4_dinum")
+
+[node name="Platform-long4" type="Sprite2D" parent="."]
+position = Vector2(637, 808)
+scale = Vector2(53.625, 21.3234)
+texture = ExtResource("4_dinum")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="pressed" from="Button" to="Player" method="_on_button_pressed"]
